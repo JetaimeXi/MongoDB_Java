@@ -3,6 +3,8 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class Main {
         try {
 
             // 建立连接
-            MongoClient mongoClient = new MongoClient("localhost",27017);
+            MongoClient mongoClient = new MongoClient("localhost", 27017);
 
             // 获取数据库
             MongoDatabase test = mongoClient.getDatabase("test");
@@ -51,10 +53,21 @@ public class Main {
             // 获取游标
             MongoCursor<Document> mongoCursor = documentFindIterable.iterator();
             // 遍历游标
-            while (mongoCursor.hasNext()){
+            while (mongoCursor.hasNext()) {
                 System.out.println(mongoCursor.next());
             }
             System.out.println("检索文档成功！");
+
+            // 更新文档
+            // 更新一条数据
+//            UpdateResult updateResult = mycoll.updateOne(Filters.eq("title", "MongoDB"),
+//                    new Document("$set", new Document("title", "Redis")));
+//            System.out.println(updateResult);
+            // 更新所有数据
+//            UpdateResult updateResult = mycoll.updateMany(Filters.eq("description", "database"),
+//                    new Document("$set", new Document("description", "NoSQL")));
+//            System.out.println(updateResult);
+//            System.out.println("更新文档成功！");
         } catch (Exception e) {
             e.printStackTrace();
         }
