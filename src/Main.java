@@ -4,6 +4,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 
@@ -36,11 +37,11 @@ public class Main {
 
             // 插入文档
             // 创建一个文档对象，插入一条数据
-//            Document documnet = new Document("title", "MongoDB").
-//                    append("description", "database").
-//                    append("likes", 100).
-//                    append("by", "Fly");
-//            mycoll.insertOne(documnet);
+            Document documnet = new Document("title", "MongoDB").
+                    append("description", "database").
+                    append("likes", 100).
+                    append("by", "Fly");
+            mycoll.insertOne(documnet);
 //            // 创建一个文档对象列表,插入多条数据
 //            ArrayList<Document> documents = new ArrayList<>();
 //            documents.add(documnet);    //添加进列表
@@ -68,6 +69,22 @@ public class Main {
 //                    new Document("$set", new Document("description", "NoSQL")));
 //            System.out.println(updateResult);
 //            System.out.println("更新文档成功！");
+
+            // 删除文档
+            // 删除一条文档数据
+            DeleteResult deleteResult = mycoll.deleteOne(Filters.eq("title", "MongoDB"));   //AcknowledgedDeleteResult{deletedCount=1}
+            // 删除多条文档数据
+//            DeleteResult deleteResult = mycoll.deleteMany(Filters.eq("title", "MongoDB"));    //AcknowledgedDeleteResult{deletedCount=2}
+            System.out.println(deleteResult);
+            System.out.println("删除文档成功！");
+
+            FindIterable<Document> documentFindIterable2 = mycoll.find();
+            // 获取游标
+            MongoCursor<Document> mongoCursor2 = documentFindIterable.iterator();
+            // 遍历游标
+            while (mongoCursor2.hasNext()) {
+                System.out.println(mongoCursor2.next());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
