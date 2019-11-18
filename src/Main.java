@@ -3,6 +3,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import java.util.ArrayList;
+
 /**
  * @Author: Tod
  * @Description:
@@ -24,6 +26,18 @@ public class Main {
             // 获取集合
             MongoCollection<Document> mycoll = test.getCollection("mycoll");
             System.out.println("获取集合mycoll成功");
+            // 插入文档
+            // 创建一个文档对象，插入一条数据
+            Document documnet = new Document("title", "MongoDB").
+                    append("description", "database").
+                    append("likes", 100).
+                    append("by", "Fly");
+            mycoll.insertOne(documnet);
+//            // 创建一个文档对象列表,插入多条数据
+//            ArrayList<Document> documents = new ArrayList<>();
+//            documents.add(documnet);    //添加进列表
+//            mycoll.insertMany(documents);
+            System.out.println("插入数据成功！");
         } catch (Exception e) {
             e.printStackTrace();
         }
