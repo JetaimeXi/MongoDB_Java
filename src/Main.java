@@ -18,11 +18,11 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-
+        MongoClient mongoClient = null;
         try {
 
             // 建立连接
-            MongoClient mongoClient = new MongoClient("localhost", 27017);
+            mongoClient = new MongoClient("localhost", 27017);
 
             // 获取数据库
             MongoDatabase test = mongoClient.getDatabase("test");
@@ -87,6 +87,11 @@ public class Main {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            // 断开连接
+            if (mongoClient != null) {
+                mongoClient.close();
+            }
         }
     }
 }
