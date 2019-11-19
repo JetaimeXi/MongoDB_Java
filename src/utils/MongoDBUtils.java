@@ -58,4 +58,9 @@ public class MongoDBUtils {
         return collection;
     }
 
+    public static void closeMongoDBClient() {
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
+    }
 }

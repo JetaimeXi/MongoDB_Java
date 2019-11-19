@@ -18,10 +18,10 @@
 // */
 //public class Main {
 //    public static void main(String[] args) {
-//
+//        private MongoClient mongoClient = null;
 //        try {
 //            // 建立连接
-//            MongoClient mongoClient = new MongoClient("localhost", 27017);
+//            mongoClient = new MongoClient("localhost", 27017);
 //
 //            // 获取数据库
 //            MongoDatabase test = mongoClient.getDatabase("test");

@@ -85,6 +85,7 @@ public class ProductWeb {
                     break;
                 case "Q":
                     System.out.println("谢谢你的使用！");
+                    MongoDBUtils.closeMongoDBClient();
                     System.exit(0);
                     break;
                 default:
