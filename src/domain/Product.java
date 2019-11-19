@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 
 /**
  * @Author: Tod
- * @Description:
+ * @Description: 商品域
  * @Date: Created in 2019/11/19 8:54
  * @Version: 1.0
  */

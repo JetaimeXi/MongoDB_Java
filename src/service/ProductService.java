@@ -7,19 +7,19 @@ import org.bson.Document;
 
 /**
  * @Author: Tod
- * @Description:
+ * @Description: 业务层
  * @Date: Created in 2019/11/19 8:54
  * @Version: 1.0
  */
 public class ProductService {
     /**
+     * @return
      * @Description: 查询所有信息
      * @Method: findAllProducts
      * @Implementation:
      * @Return: com.mongodb.DBCursor
      * @Date: 2019/11/19 11:01
      * @Author: Tod
-     * @return
      */
     public MongoCursor<Document> findAllProducts() {
         // 调用dao层对象
@@ -27,7 +27,7 @@ public class ProductService {
     }
 
     /**
-     * @param pid 商品编号
+     * @param queryId 商品编号
      * @Description: 根据商品编号查询商品信息
      * @Method: findProductByPid
      * @Implementation:
@@ -35,12 +35,20 @@ public class ProductService {
      * @Date: 2019/11/19 13:10
      * @Author: Tod
      */
-    public MongoCursor<Document> findProductByPid(int pid) {
+    public MongoCursor<Document> findProductByPid(int queryId) {
         // 调用dao层对象
-        return new ProductDao().findProductByPid(pid);
+        return new ProductDao().findProductByPid(queryId);
     }
 
-    public boolean insertProduct(Product product) {
-        return new ProductDao().insertProduct(product);
+    public boolean addProduct(Product product) {
+        return new ProductDao().addProduct(product);
+    }
+
+    public boolean deleteProductByPid(int deleteId) {
+        return new ProductDao().deleteProductByPid(deleteId);
+    }
+
+    public boolean updateProduct(int updateId, Product update_product) {
+        return new ProductDao().updateProduct(updateId, update_product);
     }
 }
