@@ -30,47 +30,47 @@
  
         var productArr=[
         {
-            pid: 1,
+            pid: NumberInt(1),
             pname: "Lenovo",
             price: 5000
         },
         {
-            pid: 2,
+            pid: NumberInt(2),
             pname: "Haier",
             price: 3000
         },
         {
-            pid: 3,
+            pid: NumberInt(3),
             pname: "Thor",
             price: 5000
         },
         {
-            pid: 4,
+            pid: NumberInt(4),
             pname: "Nike",
             price: 6000
         },
         {
-            pid: 5,
+            pid: NumberInt(5),
             pname: "Dior",
             price: 2000
         },
         {
-            pid: 6,
+            pid: NumberInt(6),
             pname: "Hermes",
             price: 2400
         },
         {
-            pid: 7,
+            pid: NumberInt(7),
             pname: "CK",
             price: 7000
         },
         {
-            pid: 8,
+            pid: NumberInt(8),
             pname: "Chanel",
             price: 2000
         },
         {
-            pid: 9,
+            pid: NumberInt(9),
             pname: "BMW",
             price: 50000
         }]
