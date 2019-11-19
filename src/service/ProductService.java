@@ -2,6 +2,7 @@ package service;
 
 import com.mongodb.client.MongoCursor;
 import dao.ProductDao;
+import domain.Product;
 import org.bson.Document;
 
 /**
@@ -25,8 +26,21 @@ public class ProductService {
         return new ProductDao().findAllProducts();
     }
 
+    /**
+     * @param pid 商品编号
+     * @Description: 根据商品编号查询商品信息
+     * @Method: findProductByPid
+     * @Implementation:
+     * @Return: void
+     * @Date: 2019/11/19 13:10
+     * @Author: Tod
+     */
     public MongoCursor<Document> findProductByPid(int pid) {
         // 调用dao层对象
         return new ProductDao().findProductByPid(pid);
+    }
+
+    public boolean insertProduct(Product product) {
+        return new ProductDao().insertProduct(product);
     }
 }

@@ -39,14 +39,14 @@ public class MongoDBUtils {
             port = Integer.parseInt(properties.getProperty("port"));
             databaseName = properties.getProperty("databaseName");
             collectionName = properties.getProperty("collectionName");
+            // 建立连接
+            mongoClient = new MongoClient(host, port);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static MongoCollection<Document> getMongoDBCollection() {
-        // 建立连接
-        mongoClient = new MongoClient(host, port);
         // 获取数据库
         MongoDatabase mongoDatabase = mongoClient.getDatabase(databaseName);
         // 获取集合

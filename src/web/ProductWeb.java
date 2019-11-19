@@ -24,10 +24,21 @@ public class ProductWeb {
             System.out.println("C:添加商品\tD:根据编号清除商品\tDA:删除所有商品\tI:根据商品编号查询商品信息\tFA:查询所有商品信息\tQ:退出");
             switch (sc.next().toUpperCase()) {
                 case "C":
-                    System.out.println("添加商品");
+                    System.out.println("请输入添加的商品编号：");
+                    int pid = sc.nextInt();
+                    System.out.println("请输入添加的商品名称：");
+                    String pname = sc.next();
+                    System.out.println("请输入添加的商品价格：");
+                    double price = sc.nextDouble();
+                    Product product = new Product(null, pid, pname, price);
+                    if (insertProduct(product)) {
+                        System.out.println("添加成功！");
+                    } else {
+                        System.out.println("添加异常！");
+                    }
                     break;
                 case "D":
-                    System.out.println("根据编号清除商品");
+//                    System.out.println("根据编号清除商品");
                     break;
                 case "DA":
                     System.out.println("删除所有商品");
@@ -49,9 +60,23 @@ public class ProductWeb {
         }
     }
 
-    private static void findProductByPid(int i) {
+    private static boolean insertProduct(Product product) {
         ProductService productService = new ProductService();
-        MongoCursor<Document> documentMongoCursor = productService.findProductByPid(i);
+        return productService.insertProduct(product);
+    }
+
+    /**
+     * @param pid 商品编号
+     * @Description: 根据商品编号查询商品信息
+     * @Method: findProductByPid
+     * @Implementation:
+     * @Return: void
+     * @Date: 2019/11/19 13:10
+     * @Author: Tod
+     */
+    private static void findProductByPid(int pid) {
+        ProductService productService = new ProductService();
+        MongoCursor<Document> documentMongoCursor = productService.findProductByPid(pid);
         if (!documentMongoCursor.hasNext()) {
             System.out.println("没有您要查找的数据！");
         } else {
@@ -79,10 +104,10 @@ public class ProductWeb {
         } else {
             System.out.println("商品编号\t\t\t商品名称\t\t\t商品价格");
             Document document = documentMongoCursor.next();
-            System.out.println(document.getDouble("pid") + "\t\t\t" + document.getString("pname") + "\t\t\t" + document.getDouble("price"));
-            while (documentMongoCursor.hasNext()){
+            System.out.println(document.get("pid") + "\t\t\t" + document.getString("pname") + "\t\t\t" + document.getDouble("price"));
+            while (documentMongoCursor.hasNext()) {
                 document = documentMongoCursor.next();
-                System.out.println(document.getDouble("pid") + "\t\t\t" + document.getString("pname") + "\t\t\t" + document.getDouble("price"));
+                System.out.println(document.get("pid") + "\t\t\t" + document.getString("pname") + "\t\t\t" + document.getDouble("price"));
             }
         }
 

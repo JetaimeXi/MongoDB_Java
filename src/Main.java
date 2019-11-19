@@ -20,7 +20,11 @@
 //    public static void main(String[] args) {
 //
 //        try {
+//            // 建立连接
+//            MongoClient mongoClient = new MongoClient("localhost", 27017);
 //
+//            // 获取数据库
+//            MongoDatabase test = mongoClient.getDatabase("test");
 //
 //            System.out.println("Connect to database successfully!");
 ////            // 创建集合
